@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 
 // const crudCommand = "create";
 // const crudCommand = "read";
-const crudCommand = "delete";
+const crudCommand = "update";
+// const crudCommand = "delete";
 
 
 mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
@@ -56,8 +57,11 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
         })();
         break;
       case "update":
-        console.log("TODO: UPDATE");
-        closeConnection();
+        (async () => {
+            await UserModel.findOneAndUpdate({ username: "TEST" }, { $set: { email: "33email" } });
+            console.log('user updated');
+            closeConnection();
+        })();
         break;
       case "delete":
         (async () => {
