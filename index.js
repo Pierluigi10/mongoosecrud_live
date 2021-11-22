@@ -8,6 +8,14 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
     console.log("Error on connect");
   } else {
     console.log("connection open");
+
+    const userSchema = mongoose.Schema({
+      name: String,
+      username: String,
+      email: String,
+    });
+    const UserModel = mongoose.model("User", userSchema); //conventionally written in capitals
+
     switch (crudCommand) {
       case "create":
         console.log("TODO: CREATE");
