@@ -10,7 +10,8 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
     console.log("connection open");
 
     const userSchema = mongoose.Schema({
-      name: String,
+      //   name: String,
+      name: { type: String, required: true },
       username: String,
       email: String,
       age: Number,
@@ -45,8 +46,11 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
       //     })();
       //     break;
       case "read":
-        console.log("TODO: READ");
-        closeConnection();
+        (async () => {
+            const users = await UserModel.find({});
+            users.forEach(user => console.log(user.name));
+            closeConnection();
+        })();
         break;
       case "update":
         console.log("TODO: UPDATE");
