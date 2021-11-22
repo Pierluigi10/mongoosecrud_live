@@ -1,7 +1,10 @@
 // console.log("testn"); // test
 import mongoose from "mongoose";
 
-const crudCommand = "create";
+// const crudCommand = "create";
+// const crudCommand = "read";
+const crudCommand = "delete";
+
 
 mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
   if (err) {
@@ -21,8 +24,8 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
     switch (crudCommand) {
       case "create":
         const user = new UserModel({
-          name: "Jon Ackers",
-          username: "ja",
+          name: "TEST",
+          username: "TEST",
           email: "ja@gmail.com",
           age: 34,
         });
@@ -57,8 +60,11 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
         closeConnection();
         break;
       case "delete":
-        console.log("TODO: DELETE");
-        closeConnection();
+        (async () => {
+            await UserModel.deleteOne({ username: "TEST" });
+            console.log('user deleted');
+            closeConnection();
+        })();
         break;
       default:
         console.log("BAD COMMAND: " + crudCommand);
