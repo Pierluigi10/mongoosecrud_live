@@ -18,8 +18,19 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
 
     switch (crudCommand) {
       case "create":
-        console.log("TODO: CREATE");
-        closeConnection();
+        const user = new UserModel({
+          name: "Jon Ackers",
+          username: "ja",
+          email: "ja@gmail.com",
+        });
+        user.save((err) => {
+          if (err) {
+            console.log("BAD CREATE");
+          } else {
+            console.log(`user inserted: ${user.name}`);
+          }
+          closeConnection();
+        });
         break;
       case "read":
         console.log("TODO: READ");
