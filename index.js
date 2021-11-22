@@ -32,6 +32,16 @@ mongoose.connect("mongodb://localhost:27017/appcrud", (err) => {
           closeConnection();
         });
         break;
+      case "create2":
+        (async () => {
+          await UserModel.create({
+            name: "Alice Wellington",
+            username: "aw",
+            email: "aw@gmail.com",
+          });
+          closeConnection();
+        })();
+        break;
       case "read":
         console.log("TODO: READ");
         closeConnection();
